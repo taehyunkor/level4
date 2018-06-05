@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- --!>
 ${list }
            <c:forEach var="item" items="${list}">
 			<tr>
