@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<insert id="insert" parameterType="ProductVO">
+		insert into Product(code, cost, gcode, jnum, pname, pnum, sale)
+		values(#{code}, #{cost}, #{gcode}, #{jnum}, #{pname}, #{pnum}, #{sale})
+	</insert>
+	
+	<select id="search" parameterType="java.lang.String"
+	resultType="ProductVO">
+		select code, cost, gcode, jnum, pname, pnum, sale
+		from product
+		where code=#{code}
+	</select>
+	
+	<update id="update" parameterType="ProductVO">
+		update product
+		set cost=#{cost}, gcode=#{gcode}, jnum=#{jnum},
+			pname=#{pname}, pnum=#{pnum}, sale=#{sale}
+		where code=#{code}
+	</update>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from product 
+		where code = #{code}
+	</delete>
+	<select id="fast" 
+	resultType="java.util.Map">
+		 <![CDATA[
+		select pname, (pnum-jnum) cha
+		from product
+		where jnum < pnum*0.2
+		    ]]>	
+	</select>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
